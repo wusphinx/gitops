@@ -26,4 +26,6 @@ jobs:
           push: true
           registry: docker.pkg.github.com
           tags: $GITHUB_REF-$SHA8
+          tag_with_ref: true
+
 
