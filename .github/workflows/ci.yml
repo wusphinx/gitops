@@ -12,3 +12,18 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
+
+  build:
+    needs: golangci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          push: true
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          tags: ${{ steps.extract_branch.outputs.branch }}
