@@ -21,8 +21,9 @@ jobs:
 
     steps:
       - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          push: true
           registry: docker.pkg.github.com
-        run: docker build -t wusphinx/gitops/gitops:$GITHUB_REF-$SHA8 .
+          tags: gitops:$GITHUB_REF-$SHA8
+
