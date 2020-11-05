@@ -14,6 +14,7 @@ jobs:
           version: v1.29
 
   build:
+    needs: golangci
     runs-on: ubuntu-latest
     env:
       SHA8: ${GITHUB_SHA::8}
