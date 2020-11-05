@@ -12,3 +12,19 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SHA8: ${GITHUB_SHA::8}
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+        run: docker build -t wusphinx/gitops/gitops:$GITHUB_REF-$SHA8 .
