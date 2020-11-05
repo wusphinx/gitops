@@ -25,5 +25,5 @@ jobs:
           push: true
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          tags: ghcr.io/${{ github.repository_owner }}/gitops:${{ steps.extract_branch.outputs.branch }}
+          registry: ghcr.io
+          tags: ghcr.io/${{ github.repository_owner }}/gitops:test
