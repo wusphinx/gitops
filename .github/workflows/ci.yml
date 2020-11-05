@@ -17,8 +17,7 @@ jobs:
     needs: golangci
     runs-on: ubuntu-latest
     env:
-      SHA8: ${{ GITHUB_SHA::8 }}
-
+      SHA8: ${GITHUB_SHA::8}
     steps:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
