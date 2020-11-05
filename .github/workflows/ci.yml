@@ -16,8 +16,6 @@ jobs:
   build:
     needs: golangci
     runs-on: ubuntu-latest
-    env:
-      SHA8: ${GITHUB_SHA::8}
     steps:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
@@ -26,7 +24,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: my-org/my-repo/my-image
-          tags: ${{ GITHUB_REF }}-${{ SHA8 }}
+          tags: ${GITHUB_REF}-${INPUT_TAG_WITH_SHA}
 
 
